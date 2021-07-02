@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vouchers",
+  "info": {
+    "name": "voucher",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productName": {
+      "type": "string",
+      "required": true
+    },
+    "productSku": {
+      "type": "string",
+      "required": true
+    },
+    "voucherCode": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "PENDING",
+        "SUBMITTED",
+        "DELIVERING",
+        "DELIVERED"
+      ],
+      "required": true,
+      "default": "PENDING"
+    },
+    "block": {
+      "type": "enumeration",
+      "enum": [
+        "EAST",
+        "WEST"
+      ]
+    },
+    "floor": {
+      "type": "string"
+    },
+    "receiver": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}
