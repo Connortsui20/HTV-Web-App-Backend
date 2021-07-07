@@ -12,7 +12,7 @@
 
     {
       "method": "GET",
-      "path": "/vouchers/:voucherCode",
+      "path": "/vouchers/findvoucher/:voucherCode",
       "handler": "voucher.findvoucher",
       "config": {
         "policies": []
@@ -23,6 +23,15 @@
       "method": "PUT",
       "path": "/vouchers/updatestatus/:id",
       "handler": "voucher.updatestatus",
+      "config": {
+        "policies": []
+      }
+    },
+
+    {
+      "method": "GET",
+      "path": "/vouchers/productvouchers/:productId",
+      "handler": "voucher.productvouchers",
       "config": {
         "policies": []
       }

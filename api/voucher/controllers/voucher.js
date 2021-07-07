@@ -1,4 +1,5 @@
 'use strict';
+var qs = require('qs');
 const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -52,14 +53,47 @@ module.exports = {
             entity = await strapi.services.voucher.update({ id }, data, {
                 files,
             });
-        } else {  
-            
+        } else {
+
             entity = await strapi.services.voucher.update({ id }, ctx.request.body);
         }
-
-        
-
         return sanitizeEntity(entity, { model: strapi.models.voucher });
+    },
+
+
+    async productvouchers(ctx) {
+
+        let entities;
+        let finalArray;
+        const { productId }= ctx.params;
+
+        ctx.state.query = qs.parse(ctx.state.querystring = `product.id=${productId}`);
+
+        if (ctx.query._q) { //? not sure if I even need to put code here, repeating the code just in case
+            entities = await strapi.services.voucher.search(ctx.state.query);
+            finalArray = entities.map(item => {
+                let newItem = ({
+                    ...item
+                });
+                delete newItem.product;
+                return newItem;
+            });
+            console.log("ctx.query._q is true");
+        } else {
+            entities = await strapi.services.voucher.find(ctx.state.query); //TODO Look at http://knexjs.org/#Builder
+            finalArray = entities.map(item => {
+                let newItem = ({
+                    ...item
+                });
+                delete newItem.product;
+                return newItem;
+            });
+        }
+
+        return finalArray.map(entity => sanitizeEntity(entity, { model: strapi.models.voucher }));
+
+
+
     },
 
 

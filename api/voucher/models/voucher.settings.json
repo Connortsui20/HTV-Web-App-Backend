@@ -12,28 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productName": {
-      "type": "string",
-      "required": true
-    },
-    "productSku": {
-      "type": "string",
-      "required": true
-    },
     "voucherCode": {
       "type": "string",
       "required": true,
       "unique": true
-    },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
     },
     "status": {
       "type": "enumeration",
@@ -61,6 +43,10 @@
     },
     "phone": {
       "type": "string"
+    },
+    "product": {
+      "model": "product",
+      "via": "vouchers"
     }
   }
 }
