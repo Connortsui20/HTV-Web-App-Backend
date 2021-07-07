@@ -46,7 +46,8 @@
     },
     "product": {
       "model": "product",
-      "via": "vouchers"
+      "via": "vouchers",
+      "required": true
     }
   }
 }
