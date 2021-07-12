@@ -1,19 +1,21 @@
 {
   "routes": [
+  
     
-    {
-      "method": "PUT",
-      "path": "/vouchers/updatevoucher/:voucherCode",
-      "handler": "voucher.updatevoucher",
-      "config": {
-        "policies": []
-      }
-    },
 
     {
       "method": "GET",
       "path": "/vouchers/findvoucher/:voucherCode",
       "handler": "voucher.findvoucher",
+      "config": {
+        "policies": []
+      }
+    },
+    
+    {
+      "method": "PUT",
+      "path": "/vouchers/updatevoucher/:voucherCode",
+      "handler": "voucher.updatevoucher",
       "config": {
         "policies": []
       }
